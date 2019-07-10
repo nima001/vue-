@@ -84,11 +84,19 @@ new Vue({
         },
         total: function () {
             var total = 0;
-            this.services.forEach(function (value) {
-                if (value.active) {
-                    total += value.price;
-                }
-            });
+            if (this.gride1) {
+                this.services.forEach(function (value) {
+                    if (value.active) {
+                        total += value.price;
+                    }
+                });
+            } else {
+                this.services1.forEach(function (value) {
+                    if (value.active) {
+                        total += value.price;
+                    }
+                });
+            }
             return total;
         }
     },

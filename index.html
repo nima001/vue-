@@ -67,7 +67,6 @@
         }
 
 
-
         .search-body:after {
             content: '';
             position: absolute;
@@ -93,16 +92,16 @@
             content: '✎'
         }
 
-        .active{
+        .active {
             background: #8ec16d;
         }
 
-        ul li{
-            background-color:#e35885;
+        ul li {
+            background-color: #e35885;
         }
 
-        #total{
-            border-top:1px solid #ffffff;
+        #total {
+            border-top: 1px solid #ffffff;
             padding-top: 15px;
             margin-top: 20px;
             text-align: left;
@@ -110,7 +109,7 @@
             padding-left: 3px;
         }
 
-        #gri{
+        #gri {
             background-color: #5e5b64;
         }
     </style>
@@ -131,14 +130,17 @@
     <p>你选择了{{active}}</p>
 </div>
 
-<div id="content" style="color:white;margin-left:26%;background:#61a1bc;width: 40%;height:255px;padding:15px;border-radius: 5px">
-    <ul style="cursor: pointer;"  v-if="gride1">
-        <li v-for="service in services" @click="toggle(service)" :class="{active:service.active}" style="padding:2px 4px 2px 4px;text-align: left;margin-bottom: 8px;font-size: 25px;list-style: none;box-shadow:0 1px 1px rgba(0,0,0,0.1);">
-          {{service.name}}<span style="float: right;">{{service.price | currency}}</span>
+<div id="content"
+     style="color:white;margin-left:26%;background:#61a1bc;width: 40%;height:255px;padding:15px;border-radius: 5px">
+    <ul style="cursor: pointer;" v-if="gride1">
+        <li v-for="service in services" @click="toggle(service)" :class="{active:service.active}"
+            style="padding:2px 4px 2px 4px;text-align: left;margin-bottom: 8px;font-size: 25px;list-style: none;box-shadow:0 1px 1px rgba(0,0,0,0.1);">
+            {{service.name}}<span style="float: right;">{{service.price | currency}}</span>
         </li>
     </ul>
     <ul id="gri" style="cursor: pointer;" v-if="!gride1">
-        <li v-for="service in services1" @click="toggle(service)" :class="{active:service.active}" style="padding:2px 4px 2px 4px;text-align: left;margin-bottom: 8px;font-size: 25px;list-style: none;box-shadow:0 1px 1px rgba(0,0,0,0.1);">
+        <li v-for="service in services1" @click="toggle(service)" :class="{active:service.active}"
+            style="padding:2px 4px 2px 4px;text-align: left;margin-bottom: 8px;font-size: 25px;list-style: none;box-shadow:0 1px 1px rgba(0,0,0,0.1);">
             {{service.name}}<span style="float: right;">{{service.price | currency}}</span>
         </li>
     </ul>
