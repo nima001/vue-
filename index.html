@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 18px 30px;
+            color: #fff !important;
+            font-weight: bold;
+            font-size: 16px;
+            text-decoration: none !important;
+            line-height: 1;
+            text-transform: uppercase;
+            background-color: transparent;
+        }
+
+        body {
+            font: 15px/1.3 'Open Sans', sans-serif;
+            color: #5e5b64;
+            text-align: center;
+        }
+
+        nav:hover {
+            text-decoration: none;
+        }
+
+        nav.HOME .home,
+        nav.PROJECT .projects,
+        nav.SERVICE .services,
+        nav.CONTENT .contact {
+            background-color: #e35885;
+        }
+
+        nav {
+            border-radius: 5px;
+            box-shadow: 0 1px 1px #ccc;
+            background-color: #5597b4;
+        }
+
+        p {
+            font-size: 22px;
+            font-weight: bold;
+            color: #6d8088;
+            height: 30px;
+            cursor: default;
+        }
+
+        .search-body {
+            background-color: #5597b4;
+            border-radius: 3px;
+            width: 290px;
+            padding: 10px;
+            position: absolute;
+            left: 62%;
+            top: 55px;
+        }
+
+
+
+        .search-body:after {
+            content: '';
+            position: absolute;
+            border: 6px solid #5190ac;
+            border-color: transparent transparent #5190ac transparent;
+            top: -11px;
+            left: 50%;
+            margin-left: -6px;
+        }
+
+
+        input {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            color: #8d9395;
+            border-radius: 5px;
+            border: 1px;
+            box-shadow: 0 0 1px #ccc;
+        }
+
+        .search:before {
+            content: '✎'
+        }
+
+        .active{
+            background: #8ec16d;
+        }
+
+        ul li{
+            background-color:#e35885;
+        }
+
+        #total{
+            border-top:1px solid #ffffff;
+            padding-top: 15px;
+            margin-top: 20px;
+            text-align: left;
+            font-weight: bold;
+            padding-left: 3px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <nav :class="active" @click.prevent>
+        <a href="#" class="home" @click="makeActive('home')">HOME</a>
+        <a href="#" class="projects" @click="makeActive('project')">PROJECT</a>
+        <a href="#" class=services @click="makeActive('service')">SERVICE</a>
+        <a href="#" class="contact" @click="makeActive('content')">CONTENT</a>
+        <a href="#" class="search" @click="show"></a>
+    </nav>
+    <div class="search-body" v-if="searchtext">
+        <input type="text" v-model='content'>
+    </div>
+    <p>你选择了{{active}}</p>
+</div>
+
+<div id="content" style="color:white;margin-left:26%;background:#61a1bc;width: 40%;height:255px;padding:15px;border-radius: 5px">
+    <ul style="cursor: pointer;">
+        <li v-for="service in services" @click="toggle(service)" :class="{active:service.active}" style="padding:2px 4px 2px 4px;text-align: left;margin-bottom: 8px;font-size: 25px;list-style: none;box-shadow:0 1px 1px rgba(0,0,0,0.1);">
+          {{service.name}}<span style="float: right;">{{service.price | currency}}</span>
+        </li>
+    </ul>
+    <div id="total">
+        Total: <span style="float: right;margin-right: 5px">{{total() | currency}}</span>
+    </div>
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>
