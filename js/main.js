@@ -1,9 +1,12 @@
+var Event = new Vue();
+
 new Vue({
     el: '#app',
     data: {
         active: 'HOME',
         searchtext: false,
         content: '点我，并编辑内容',
+        gride: false,
     },
     methods: {
         makeActive: function (item) {
@@ -12,6 +15,11 @@ new Vue({
         show: function () {
             this.searchtext = !this.searchtext;
         },
+        changegride: function () {
+            this.gride = !this.gride;
+            Event.$emit("change-gride", this.gride);
+        }
+
 
     }
 });
@@ -23,6 +31,7 @@ Vue.filter('currency', function (val) {
 new Vue({
     el: '#content',
     data: {
+        gride1: false,
         services: [
             {
                 name: 'Development',
@@ -44,6 +53,28 @@ new Vue({
                 price: 220.00,
                 active: false,
             }
+        ],
+        services1: [
+            {
+                name: 'Development',
+                price: 100.00,
+                active: false,
+            },
+            {
+                name: 'Design',
+                price: 200.00,
+                active: false,
+            },
+            {
+                name: 'Integration',
+                price: 300.00,
+                active: false,
+            },
+            {
+                name: 'Training',
+                price: 400.00,
+                active: false,
+            }
         ]
     },
     methods: {
@@ -52,7 +83,7 @@ new Vue({
             console.log('s', s.active);
         },
         total: function () {
-            var total=0;
+            var total = 0;
             this.services.forEach(function (value) {
                 if (value.active) {
                     total += value.price;
@@ -60,5 +91,12 @@ new Vue({
             });
             return total;
         }
+    },
+    mounted: function () {
+        var me = this;
+        Event.$on('change-gride', function (data) {
+            me.gride1 = data;
+            console.log(me.gride1);
+        })
     }
 })
