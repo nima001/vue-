@@ -28,10 +28,11 @@ Vue.filter('currency', function (val) {
     return '$' + val.toFixed(2);
 })
 
-new Vue({
+var vm = new Vue({
     el: '#content',
     data: {
         gride1: false,
+        sd:1,
         services: [
             {
                 name: 'Development',
@@ -100,6 +101,11 @@ new Vue({
             return total;
         }
     },
+    watch:{
+        sd:function (data) {
+            this.sd = this.sd++;
+        }
+    },
     mounted: function () {
         var me = this;
         Event.$on('change-gride', function (data) {
@@ -107,4 +113,7 @@ new Vue({
             console.log(me.gride1);
         })
     }
-})
+});
+vm.$watch('sd',function (ndata,odata) {
+    document.getElementById('da').innerHTML="修改前为: " + odata + "，修改后为: " + ndata;
+});
