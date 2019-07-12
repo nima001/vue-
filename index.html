@@ -96,8 +96,8 @@
             background: #8ec16d;
         }
 
-        #content:hover{
-            box-shadow:0 1px 100px rgba(0,0,0,0.1);
+        #content:hover {
+            box-shadow: 0 1px 100px rgba(0, 0, 0, 0.1);
         }
 
         ul li {
@@ -105,7 +105,7 @@
         }
 
         ul li:hover {
-            box-shadow:0 1px 100px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 100px rgba(0, 0, 0, 0.1);
         }
 
         #total {
@@ -120,6 +120,16 @@
         #gri {
             background-color: #5e5b64;
         }
+
+        .transform-enter-active, .transform-leave-active{
+            transition:all 2s ease;
+        }
+        .transform-enter,.transform-leave-to{
+            transform: translateX(10px) translateY(10px);
+            opacity: 0;
+        }
+
+
     </style>
 </head>
 <body>
@@ -152,9 +162,12 @@
             {{service.name}}<span style="float: right;">{{service.price | currency}}</span>
         </li>
     </ul>
-    <input type="text" v-model.lazy="sd"><br><span id="da"></span>
-    <div id="total">
-        Total: <span style="float: right;margin-right: 5px">{{total() | currency}}</span>
+    <button @click="chan" style="border:0px;background: rgb(97, 161, 188);outline: none;">显示/隐藏价格</button>
+        <input type="text" v-model.lazy="sd"><br><span id="da"></span>
+    <div id="total"> Total:
+        <transition name="transform">
+       <span  v-show="show" style="float: right;margin-right: 5px">{{total() | currency}}</span>
+        </transition>
     </div>
 </div>
 <script src="js/main.js"></script>
